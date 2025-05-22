@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
+import { usercontext } from "../Context/UserContext";
 
 import { IoPersonSharp } from "react-icons/io5";
 import { FaLock } from "react-icons/fa";
 
-const Login = (props) => {
-  const { toggler, setToggler, users, setUsers } = props;
+const Login = () => {
+  const { toggler, setToggler, users, setUsers } = useContext(usercontext);
+  console.log(users);
   const {
     register,
     handleSubmit,
@@ -18,8 +20,9 @@ const Login = (props) => {
     // console.log(data);
 
     const findUser = users.find((user) => {
-      user.email === data.email && user.password === data.password;
+      return user.username === data.username && user.password === data.password;
     });
+    console.log(findUser);
     if (findUser) {
       toast.success("User already exists!");
     } else {
@@ -69,11 +72,13 @@ const Login = (props) => {
       ) : (
         " "
       )}
-      {/* {errors.password?.type === "minLength" (
-        <p className="text-sm text-red-600 ml-5">Alleast 6 characters required</p>
+      {errors.password?.type === "minLength" ? (
+        <p className="text-sm text-red-600 ml-5">
+          Alleast 6 characters required
+        </p>
       ) : (
-        " "
-      )} */}
+        ""
+      )}
 
       <span className="flex justify-between items-center text-sm mt-3 ">
         <label>

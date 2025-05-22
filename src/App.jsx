@@ -2,23 +2,17 @@ import React, { useState } from "react";
 import Login from "./Components/Login";
 import Register from "./Components/Register";
 import Users from "./components/Users";
-
+import UserContext, { usercontext } from "./Context/UserContext";
+import { useContext } from "react";
 const App = () => {
-  const [toggler, setToggler] = useState(true);
-  const [users, setUsers] = useState([]);
+  const { toggler } = useContext(usercontext);
 
-  console.log("users->", users);
-  
+  // console.log("users->");
 
   return (
     <main className="w-screen h-screen flex justify-center items-center flex-col">
-      {toggler ? (
-        <Login toggler={toggler} setToggler={setToggler} users={users} setUsers={setUsers}/>
-      ) : (
-        <Register toggler={toggler} setToggler={setToggler} users={users} setUsers={setUsers}/>
-      )}
-
-      <Users users={users} setUsers={setUsers}/>
+      {toggler ? <Login /> : <Register />}
+      <Users />
     </main>
   );
 };

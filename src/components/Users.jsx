@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
+import { MdDeleteForever } from "react-icons/md";
+import { usercontext } from "../Context/UserContext";
 
-const Users = (props) => {
-  const { users, setUsers } = props;
+const Users = () => {
+  const { users = [], setUsers } = useContext(usercontext);
+  console.log(users);
 
   const deleteHandler = (id) => {
     const copyUsers = [...users];
-    const filteredUsers = copyUsers.filter((user) => user.id != id);
+    const filteredUsers = copyUsers.filter((user) => user.id !== id);
     setUsers(filteredUsers);
   };
 
@@ -21,9 +24,9 @@ const Users = (props) => {
         </span>
         <button
           onClick={() => deleteHandler(user.id)}
-          className="text-md font-bold text-red-700"
+          className="text-2xl font-bold "
         >
-          Delete
+          <MdDeleteForever />
         </button>
       </li>
     );
@@ -31,13 +34,7 @@ const Users = (props) => {
 
   return (
     <ul className="flex justify-start items-center gap-8 w-full flex-wrap px-9 pb-8 absolute bottom-9">
-
-      {users.length ? (
-        userList
-      ):(
-        <h1></h1>
-      )}
-      
+      {users.length !== 0 ? userList : <h1></h1>}
     </ul>
   );
 };

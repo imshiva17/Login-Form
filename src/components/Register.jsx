@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useForm, useFormState } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
-import { nanoid } from 'nanoid';
+import { nanoid } from "nanoid";
+import { usercontext } from "../Context/UserContext";
 
 import { IoPersonSharp } from "react-icons/io5";
 import { FaLock } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 
-const Register = (props) => {
-  const { toggler, setToggler, users, setUsers } = props;
+const Register = () => {
+  const { toggler, setToggler, users, setUsers } = useContext(usercontext);
   const {
     register,
     handleSubmit,
@@ -17,11 +18,9 @@ const Register = (props) => {
   } = useForm();
 
   const submitHandler = (data) => {
-
     data.id = nanoid();
-    // setUsers([...users, {id: nanoid(data)}]);
     setUsers([...users, data]);
-    toast.success("User created successfully!")
+    toast.success("User created successfully!");
     reset();
   };
 
@@ -85,11 +84,11 @@ const Register = (props) => {
       ) : (
         " "
       )}
-      {/* {errors.password?.type === "minLength" (
+      {errors.password?.type === "minLength" ? (
         <p className="text-sm text-red-600 ml-5">Alleast 6 characters required</p>
       ) : (
         " "
-      )} */}
+      )}
 
       <span className="flex justify-between items-center text-sm mt-3 ">
         <label>
