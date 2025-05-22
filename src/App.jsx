@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import Login from "../Components/Login";
-import Register from "../Components/Register";
+import Login from "./components/Login";
+import Register from "./components/Register";
+
 import Users from "./components/Users";
 import UserContext, { usercontext } from "./Context/UserContext";
 import { useContext } from "react";
+
 const App = () => {
   const { toggler } = useContext(usercontext);
 
