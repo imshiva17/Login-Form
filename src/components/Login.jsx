@@ -8,7 +8,7 @@ import { FaLock } from "react-icons/fa";
 
 const Login = () => {
   const { toggler, setToggler, users, setUsers } = useContext(usercontext);
-  console.log(users);
+  // console.log(users);
   const {
     register,
     handleSubmit,

@@ -4,7 +4,7 @@ import { usercontext } from "../Context/UserContext";
 
 const Users = () => {
   const { users = [], setUsers } = useContext(usercontext);
-  console.log(users);
+  // console.log(users);
 
   const deleteHandler = (id) => {
     const copyUsers = [...users];
